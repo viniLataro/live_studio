@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS */
+body {
+  @apply antialiased relative bg-slate-200 font-sans;
+}
+
+nav {
+  @apply py-3 px-6 flex justify-end;
+
+  ul {
+    @apply flex items-center justify-between gap-4;
+
+    li {
+      @apply text-base text-slate-700;
+
+      a:hover {
+        @apply underline;
+      }
+    }
+  }
+}
+
+main {
+  @apply max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8;
+}
+
+h1 {
+  @apply text-center text-slate-900 font-extrabold text-3xl;
+}
+
+h2 {
+  @apply text-center text-slate-800 font-extrabold text-2xl;
+}
+
+h3 {
+  @apply text-center text-slate-800 font-bold text-xl;
+}
+
+/* Projects */
+
+#projects {
+  @apply mt-16 flex flex-col min-h-screen items-center;
+
+  & h1 {
+    @apply text-5xl text-left font-extrabold leading-10 text-brand;
+  }
+
+  & ul {
+    @apply mt-8 space-y-5;
+
+    & li {
+      & a {
+        @apply inline-flex items-center font-medium text-xl px-2 py-1 rounded-md hover:bg-slate-300 text-slate-700;
+      }
+    }
+  }
+}
+
+/* Light */
+
+#light {
+  @apply mt-8 max-w-xl mx-auto text-center;
+
+  & button {
+    @apply bg-transparent mx-1 py-2 px-4 border-slate-400 border-2 rounded-lg shadow-sm transition ease-in-out duration-150 outline-none hover:bg-slate-300 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  & img,
+  & svg {
+    @apply w-8;
+  }
+
+  & .meter {
+    @apply flex h-12 overflow-hidden text-base bg-slate-300 rounded-lg mb-8;
+  }
+
+  & .meter > span {
+    @apply flex flex-col justify-center text-slate-900 text-center whitespace-nowrap bg-yellow-300 font-bold w-0;
+    transition: width 2s ease;
+  }
+
+  & form {
+    @apply mt-10;
+
+    & .temps {
+      @apply flex justify-center items-center space-y-0 space-x-10;
+
+      & > div {
+        @apply flex items-center;
+
+        & input {
+          @apply h-4 w-4 border-slate-300 text-slate-600 focus:ring-slate-500;
+        }
+
+        & label {
+          @apply ml-2 block text-sm font-bold text-slate-700;
+        }
+      }
+    }
+  }
+}
