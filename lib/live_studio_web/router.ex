@@ -20,6 +20,7 @@ defmodule LiveStudioWeb.Router do
     get "/", PageController, :home
 
     live "/light", LightLive
+    live "/sandbox", SandboxLive
   end
 
   # Other scopes may use custom stacks.
