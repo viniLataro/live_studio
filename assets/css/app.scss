@@ -3,24 +3,26 @@
 @tailwind utilities;
 
 /* Custom CSS */
+/* Custom CSS for LiveView course */
+
 body {
   @apply antialiased relative bg-slate-200 font-sans;
 }
 
 nav {
   @apply py-3 px-6 flex justify-end;
+}
 
-  ul {
-    @apply flex items-center justify-between gap-4;
+nav ul {
+  @apply flex items-center justify-between gap-4;
+}
 
-    li {
-      @apply text-base text-slate-700;
+nav ul li {
+  @apply text-base text-slate-700;
+}
 
-      a:hover {
-        @apply underline;
-      }
-    }
-  }
+nav ul li a:hover {
+  @apply underline;
 }
 
 main {
@@ -43,104 +45,124 @@ h3 {
 
 #projects {
   @apply mt-16 flex flex-col min-h-screen items-center;
-
-  & h1 {
-    @apply text-5xl text-left font-extrabold leading-10 text-brand;
-  }
-
-  & ul {
-    @apply mt-8 space-y-5;
-
-    & li {
-      & a {
-        @apply inline-flex items-center font-medium text-xl px-2 py-1 rounded-md hover:bg-slate-300 text-slate-700;
-      }
-    }
-  }
+}
+#projects h1 {
+  @apply text-5xl text-left font-extrabold leading-10 text-brand;
+}
+#projects ul {
+  @apply mt-8 space-y-5;
+}
+#projects ul li a {
+  @apply inline-flex items-center font-medium text-xl px-2 py-1 rounded-md hover:bg-slate-300 text-slate-700;
 }
 
 /* Light */
 
 #light {
   @apply mt-8 max-w-xl mx-auto text-center;
-
-  & button {
-    @apply bg-transparent mx-1 py-2 px-4 border-slate-400 border-2 rounded-lg shadow-sm transition ease-in-out duration-150 outline-none hover:bg-slate-300 disabled:opacity-50 disabled:cursor-not-allowed;
-  }
-
-  & img,
-  & svg {
-    @apply w-8;
-  }
-
-  & .meter {
-    @apply flex h-12 overflow-hidden text-base bg-slate-300 rounded-lg mb-8;
-  }
-
-  & .meter > span {
-    @apply flex flex-col justify-center text-slate-900 text-center whitespace-nowrap bg-yellow-300 font-bold w-0;
-    transition: width 2s ease;
-  }
-
-  & form {
-    @apply mt-10;
-
-    & .temps {
-      @apply flex justify-center items-center space-y-0 space-x-10;
-
-      & > div {
-        @apply flex items-center;
-
-        & input {
-          @apply h-4 w-4 border-slate-300 text-slate-600 focus:ring-slate-500;
-        }
-
-        & label {
-          @apply ml-2 block text-sm font-bold text-slate-700;
-        }
-      }
-    }
-  }
+}
+#light button {
+  @apply bg-transparent mx-1 py-2 px-4 border-slate-400 border-2 rounded-lg shadow-sm transition ease-in-out duration-150 outline-none hover:bg-slate-300 disabled:opacity-50 disabled:cursor-not-allowed;
+}
+#light img,
+#light svg {
+  @apply w-8;
+}
+#light .meter {
+  @apply flex h-12 overflow-hidden text-base bg-slate-300 rounded-lg mb-8;
+}
+#light .meter > span {
+  @apply flex flex-col justify-center text-slate-900 text-center whitespace-nowrap bg-yellow-300 font-bold w-0;
+  transition: width 2s ease;
+}
+#light form {
+  @apply mt-10;
+}
+#light form .temps {
+  @apply flex justify-center items-center space-y-0 space-x-10;
+}
+#light form .temps > div {
+  @apply flex items-center;
+}
+#light form .temps > div input {
+  @apply h-4 w-4 border-slate-300 text-slate-600 focus:ring-slate-500;
+}
+#light form .temps > div label {
+  @apply ml-2 block text-sm font-bold text-slate-700;
 }
 
 /* Sandbox Calculator */
 
 #sandbox {
   @apply mt-8 max-w-lg mx-auto;
+}
+#sandbox form {
+  @apply mx-auto mb-6 p-6 border border-slate-300 rounded-lg shadow-lg bg-white text-center;
+}
+#sandbox form .fields {
+  @apply flex items-baseline justify-center space-x-4 mb-6;
+}
+#sandbox form .fields label {
+  @apply block text-sm font-semibold text-slate-700;
+}
+#sandbox form .fields input[type="number"] {
+  @apply focus:ring-indigo-300 focus:border-indigo-300 block w-full min-w-0 pl-6 pr-16 text-sm border-slate-300 rounded-md transition duration-150 ease-in-out appearance-none;
+}
+#sandbox form .fields .input {
+  @apply mt-1 relative rounded-md shadow-sm;
+}
+#sandbox form .fields .unit {
+  @apply absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none text-slate-500 text-sm;
+}
+#sandbox form .weight {
+  @apply mt-4 block text-base font-bold text-slate-700;
+}
+#sandbox form button {
+  @apply py-2 px-4 mt-6 border border-transparent font-semibold text-base rounded-md text-white bg-green-500 transition duration-150 ease-in-out outline-none hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500;
+}
+#sandbox .quote {
+  @apply text-center p-6 border-4 border-dotted border-green-600 text-xl font-semibold text-green-600;
+}
 
-  & form {
-    @apply mx-auto mb-6 p-6 border border-slate-300 rounded-lg shadow-lg bg-white text-center;
+/* Sales Dashboard */
 
-    & .fields {
-      @apply flex items-baseline justify-center space-x-4 mb-6;
-
-      & label {
-        @apply block text-sm font-semibold text-slate-700;
-      }
-
-      & input[type="number"] {
-        @apply focus:ring-indigo-300 focus:border-indigo-300 block w-full min-w-0 pl-6 pr-16 text-sm border-slate-300 rounded-md transition duration-150 ease-in-out appearance-none;
-      }
-
-      & .input {
-        @apply mt-1 relative rounded-md shadow-sm;
-      }
-
-      & .unit {
-        @apply absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none text-slate-500 text-sm;
-      }
-    }
-
-    & .weight {
-      @apply mt-4 block text-base font-bold text-slate-700;
-    }
-
-    & button {
-      @apply py-2 px-4 mt-6 border border-transparent font-semibold text-base rounded-md text-white bg-green-500 transition duration-150 ease-in-out outline-none hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500;
-    }
-  }
-
-  & .quote {
-    @apply text-center p-6 border-4 border-dotted border-green-600 text-xl font-semibold text-green-600;
-  }
+#sales {
+  @apply mt-8 max-w-2xl mx-auto;
+}
+#sales .stats {
+  @apply mb-8 rounded-lg bg-white shadow-lg grid grid-cols-3;
+}
+#sales .stats .stat {
+  @apply p-6 text-center;
+}
+#sales .stats .stat .label {
+  @apply block mt-2 text-lg font-medium text-slate-500;
+}
+#sales .stats .stat .value {
+  @apply block text-5xl font-extrabold text-indigo-600;
+}
+#sales button {
+  @apply inline-flex items-center px-4 py-2 border border-indigo-300 text-sm shadow-sm font-medium rounded-md text-indigo-700 bg-indigo-100 transition ease-in-out duration-150 outline-none hover:bg-white active:bg-indigo-200;
+}
+#sales button img,
+#sales button svg {
+  @apply mr-2 h-4 w-4;
+}
+#sales .controls {
+  @apply flex items-center justify-end;
+}
+#sales .controls form {
+  @apply flex items-center;
+}
+#sales .controls form label {
+  @apply uppercase tracking-wide text-indigo-800 text-xs font-semibold mr-2;
+}
+#sales .controls form select {
+  @apply appearance-none bg-slate-200 border-indigo-300 border text-indigo-700 py-0 pr-8 rounded-lg font-semibold cursor-pointer mr-2 h-10;
+}
+#sales .controls form select:focus {
+  @apply outline-none bg-white border-indigo-500;
+}
+#sales .last-updated {
+  @apply text-slate-700 text-sm;
 }
