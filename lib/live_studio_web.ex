@@ -85,6 +85,7 @@ defmodule LiveStudioWeb do
       import Phoenix.HTML
       # Core UI components and translation
       import LiveStudioWeb.CoreComponents
+      import LiveStudioWeb.CustomComponents
       import LiveStudioWeb.Gettext
 
       # Shortcut for generating JS commands
