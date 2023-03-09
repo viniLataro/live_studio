@@ -2,7 +2,6 @@ defmodule LiveStudioWeb.BoatsLive do
   use LiveStudioWeb, :live_view
 
   alias LiveStudio.Boats
-  import LiveStudioWeb.CustomComponents
 
   def mount(_params, _session, socket) do
     socket =
