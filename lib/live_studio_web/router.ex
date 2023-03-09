@@ -23,6 +23,7 @@ defmodule LiveStudioWeb.Router do
     live "/sandbox", SandboxLive
     live "/sales", SalesLive
     live "/flights", FlightsLive
+    live "/boats", BoatsLive
   end
 
   # Other scopes may use custom stacks.
