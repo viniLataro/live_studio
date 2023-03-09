@@ -21,6 +21,25 @@ defmodule LiveStudio.Boats do
     Repo.all(Boat)
   end
 
+  def list_boats(filter) when is_map(filter) do
+    from(Boat)
+    |> filter_by_type(filter)
+    |> filter_by_prices(filter)
+    |> Repo.all()
+  end
+
+  defp filter_by_type(query, %{type: ""}), do: query
+
+  defp filter_by_type(query, %{type: type}) do
+    where(query, type: ^type)
+  end
+
+  defp filter_by_prices(query, %{prices: [""]}), do: query
+
+  defp filter_by_prices(query, %{prices: prices}) do
+    where(query, [boat], boat.price in ^prices)
+  end
+
   @doc """
   Gets a single boat.
 
