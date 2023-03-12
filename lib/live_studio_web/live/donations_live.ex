@@ -11,8 +11,8 @@ defmodule LiveStudioWeb.DonationsLive do
     sort_by = valid_sort_by(params)
     sort_order = valid_sort_order(params)
 
-    page = (params["page"] || "1") |> String.to_integer()
-    per_page = (params["per_page"] || "5") |> String.to_integer()
+    page = param_to_integer(params["page"], 1)
+    per_page = param_to_integer(params["per-page"], 5)
 
     options = %{
       sort_by: sort_by,
@@ -93,4 +93,13 @@ defmodule LiveStudioWeb.DonationsLive do
   end
 
   defp valid_sort_order(_params), do: :asc
+
+  defp param_to_integer(nil, default), do: default
+
+  defp param_to_integer(param, default) do
+    case Integer.parse(param) do
+      {number, _} -> number
+      :error -> default
+    end
+  end
 end
