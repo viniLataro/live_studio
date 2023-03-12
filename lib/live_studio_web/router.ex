@@ -27,6 +27,7 @@ defmodule LiveStudioWeb.Router do
     live "/servers", ServersLive
     live "/servers/:id", ServersLive
     live "/donations", DonationsLive
+    live "/volunteers", VolunteersLive
   end
 
   # Other scopes may use custom stacks.
