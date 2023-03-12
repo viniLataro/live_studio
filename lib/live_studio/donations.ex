@@ -26,11 +26,12 @@ defmodule LiveStudio.Donations do
 
   Example options:
 
-  %{sort_by: :item, sort_order: :asc}
+  %{sort_by: :item, sort_order: :asc, page: 2, per_page: 5}
   """
   def list_donations(options) when is_map(options) do
     from(Donation)
     |> sort(options)
+    |> paginate(options)
     |> Repo.all()
   end
 
@@ -39,6 +40,20 @@ defmodule LiveStudio.Donations do
   end
 
   defp sort(query, _options), do: query
+
+  defp paginate(query, %{page: page, per_page: per_page}) do
+    offset = max((page - 1) * per_page, 0)
+
+    query
+    |> limit(^per_page)
+    |> offset(^offset)
+  end
+
+  defp paginate(query, _options), do: query
+
+  def donation_count do
+    Repo.aggregate(Donation, :count, :id)
+  end
 
   @doc """
   Gets a single donation.
