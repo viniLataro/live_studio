@@ -22,6 +22,7 @@ defmodule LiveStudioWeb.Router do
     live "/light", LightLive
     live "/sandbox", SandboxLive
     live "/sales", SalesLive
+    live "/bingo", BingoLive
     live "/flights", FlightsLive
     live "/boats", BoatsLive
     live "/servers", ServersLive

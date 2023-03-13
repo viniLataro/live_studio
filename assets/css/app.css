@@ -527,6 +527,32 @@ h3 {
   @apply px-3 py-2 border border-transparent font-medium rounded-md text-white bg-amber-400 transition duration-150 ease-in-out outline-none flex-initial text-lg w-28 hover:bg-yellow-500 focus:outline-none focus:border-yellow-700 focus:ring focus:ring-yellow-300;
 }
 
+/* Bingo */
+
+#bingo {
+  @apply mt-16 max-w-md flex mx-auto items-start;
+}
+#bingo pre {
+  @apply whitespace-normal select-none;
+}
+#bingo .number {
+  @apply mx-auto text-center text-5xl font-bold text-violet-800;
+}
+#bingo .users ul {
+  @apply bg-slate-300 rounded-lg shadow-lg list-none divide-y divide-slate-400;
+}
+#bingo .users ul li {
+  @apply px-6 py-2 grid grid-cols-2 gap-4 items-center select-none;
+}
+#bingo .users ul li .status {
+  @apply inline-block p-2 mr-1;
+}
+#bingo .users ul li .username {
+  @apply text-base font-medium text-slate-700;
+}
+#bingo .users ul li .timestamp {
+  @apply text-sm font-light text-slate-400 tabular-nums;
+}
 
 /* Promo Component */
 
