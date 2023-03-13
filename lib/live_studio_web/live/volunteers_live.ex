@@ -58,6 +58,9 @@ defmodule LiveStudioWeb.VolunteersLive do
               <%= if volunteer.checked_out, do: "Check In", else: "Check Out" %>
             </button>
           </div>
+          <.link class="delete">
+            <.icon name="hero-trash-solid" />
+          </.link>
         </div>
       </div>
     </div>
