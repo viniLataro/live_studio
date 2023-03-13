@@ -10,10 +10,11 @@ defmodule LiveStudioWeb.VolunteersLive do
     changeset = Volunteers.change_volunteer(%Volunteer{})
 
     socket =
-      assign(socket,
-        volunteers: volunteers,
-        form: to_form(changeset)
-      )
+      socket
+      |> stream(:volunteers, volunteers)
+      |> assign_form(changeset)
+
+    # IO.inspect(socket.assigns.streams.volunteers, label: "MOUNT")
 
     {:ok, socket}
   end
@@ -40,17 +41,23 @@ defmodule LiveStudioWeb.VolunteersLive do
         <%#= inspect(@form, pretty: true) %>
       </pre>
 
-      <div :for={volunteer <- @volunteers} class={"volunteer #{if volunteer.checked_out, do: "out"}"}>
-        <div class="name">
-          <%= volunteer.name %>
-        </div>
-        <div class="phone">
-          <%= volunteer.phone %>
-        </div>
-        <div class="status">
-          <button>
-            <%= if volunteer.checked_out, do: "Check In", else: "Check Out" %>
-          </button>
+      <div id="volunteers" phx-update="stream">
+        <div
+          :for={{volunteer_id, volunteer} <- @streams.volunteers}
+          class={"volunteer #{if volunteer.checked_out, do: "out"}"}
+          id={volunteer_id}
+        >
+          <div class="name">
+            <%= volunteer.name %>
+          </div>
+          <div class="phone">
+            <%= volunteer.phone %>
+          </div>
+          <div class="status">
+            <button>
+              <%= if volunteer.checked_out, do: "Check In", else: "Check Out" %>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -58,6 +65,8 @@ defmodule LiveStudioWeb.VolunteersLive do
   end
 
   def handle_event("validate", %{"volunteer" => volunteer_params}, socket) do
+    # IO.inspect(socket.assigns.streams.volunteers, label: "VALIDATE")
+
     changeset =
       %Volunteer{}
       |> Volunteers.change_volunteer(volunteer_params)
@@ -69,12 +78,9 @@ defmodule LiveStudioWeb.VolunteersLive do
   def handle_event("save", %{"volunteer" => volunteer_params}, socket) do
     case Volunteers.create_volunteer(volunteer_params) do
       {:ok, volunteer} ->
-        socket =
-          update(
-            socket,
-            :volunteers,
-            fn volunteers -> [volunteer | volunteers] end
-          )
+        socket = stream_insert(socket, :volunteers, volunteer, at: 0)
+
+        # IO.inspect(socket.assigns.streams.volunteers, label: "SAVE")
 
         socket = put_flash(socket, :info, "Volunteer successfully checked in!")
 
