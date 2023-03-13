@@ -54,7 +54,7 @@ defmodule LiveStudioWeb.VolunteersLive do
             <%= volunteer.phone %>
           </div>
           <div class="status">
-            <button>
+            <button phx-click="toggle-status" phx-value-id={volunteer.id}>
               <%= if volunteer.checked_out, do: "Check In", else: "Check Out" %>
             </button>
           </div>
@@ -94,6 +94,14 @@ defmodule LiveStudioWeb.VolunteersLive do
 
         {:noreply, assign_form(socket, changeset)}
     end
+  end
+
+  def handle_event("toggle-status", %{"id" => id}, socket) do
+    volunteer = Volunteers.get_volunteer!(id)
+
+    {:ok, volunteer} = Volunteers.toggle_status_volunteer(volunteer)
+
+    {:noreply, stream_insert(socket, :volunteers, volunteer)}
   end
 
   defp assign_form(socket, %Ecto.Changeset{} = changeset) do
