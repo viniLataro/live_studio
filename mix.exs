@@ -55,7 +55,6 @@ defmodule LiveStudio.MixProject do
       {:faker, "~> 0.17.0"},
       {:number, "~> 1.0"},
       {:timex, "~> 3.7"},
-      {:dart_sass, "~> 0.5.1", runtime: Mix.env() == :dev},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
     ]
   end
@@ -77,14 +76,12 @@ defmodule LiveStudio.MixProject do
         "esbuild.install --if-missing"
       ],
       "assets.build": [
-        "esbuild default",
-        "sass default",
-        "tailwind default"
+        "tailwind default",
+        "esbuild default"
       ],
       "assets.deploy": [
-        "esbuild default --minify",
-        "sass default",
         "tailwind default --minify",
+        "esbuild default --minify",
         "phx.digest"
       ]
     ]

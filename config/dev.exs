@@ -26,8 +26,7 @@ config :live_studio, LiveStudioWeb.Endpoint,
   secret_key_base: "nrUdL1Czfd2/MHBvKlpJvvy1sldV4TMysYjgozJbrauXtQMKs00iXHjLBTKFV1u1",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]},
-    sass: {DartSass, :install_and_run, [:default, ~w(--watch)]}
+    tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
   ]
 
 # ## SSL Support
