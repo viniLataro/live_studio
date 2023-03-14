@@ -1,4 +1,5 @@
 defmodule LiveStudioWeb.Router do
+  alias LiveStudio.Athletes
   use LiveStudioWeb, :router
 
   pipeline :browser do
@@ -26,6 +27,7 @@ defmodule LiveStudioWeb.Router do
     live "/flights", FlightsLive
     live "/vehicles", VehiclesLive
     live "/boats", BoatsLive
+    live "/athletes", AthletesLive
     live "/servers", ServersLive
     live "/servers/:id", ServersLive
     live "/donations", DonationsLive
