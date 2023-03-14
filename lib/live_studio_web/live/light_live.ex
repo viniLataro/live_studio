@@ -31,7 +31,14 @@ defmodule LiveStudioWeb.LightLive do
         <img src="/images/light-on.svg" />
       </button>
       <form phx-change="slide">
-        <input type="range" min="0" max="100" name="brightness" value={@brightness} />
+        <input
+          type="range"
+          min="0"
+          max="100"
+          name="brightness"
+          value={@brightness}
+          phx-debounce="250"
+        />
       </form>
       <form phx-change="change-temp">
         <div class="temps">
