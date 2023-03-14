@@ -7,11 +7,12 @@ defmodule LiveStudioWeb.FlightsLive do
   def mount(_params, _session, socket) do
     socket =
       assign(socket,
-      airport: "",
-      flights: [],
-      loading: false,
-      matches: %{}
-    )
+        airport: "",
+        flights: [],
+        loading: false,
+        matches: %{}
+      )
+
     {:ok, socket}
   end
 
@@ -43,28 +44,28 @@ defmodule LiveStudioWeb.FlightsLive do
         </option>
       </datalist>
 
-      <div :if={@loading} class="loader">Loading...</div>
+      <.loading_indicator visible={@loading} />
 
       <div class="flights">
         <ul>
-            <li :for={flight <- @flights}>
-              <div class="first-line">
-                <div class="number">
-                  Flight #<%= flight.number %>
-                </div>
-                <div class="origin-destination">
-                  <%= flight.origin %> to <%= flight.destination %>
-                </div>
+          <li :for={flight <- @flights}>
+            <div class="first-line">
+              <div class="number">
+                Flight #<%= flight.number %>
               </div>
-              <div class="second-line">
-                <div class="departs">
-                  Departs: <%= flight.departure_time %>
-                </div>
-                <div class="arrives">
-                  Arrives: <%= flight.arrival_time %>
-                </div>
+              <div class="origin-destination">
+                <%= flight.origin %> to <%= flight.destination %>
               </div>
-            </li>
+            </div>
+            <div class="second-line">
+              <div class="departs">
+                Departs: <%= flight.departure_time %>
+              </div>
+              <div class="arrives">
+                Arrives: <%= flight.arrival_time %>
+              </div>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
@@ -82,11 +83,11 @@ defmodule LiveStudioWeb.FlightsLive do
 
     socket =
       assign(socket,
-       airport: airport,
-       flights: [],
-       loading: true
+        airport: airport,
+        flights: [],
+        loading: true
+      )
 
-    )
     {:noreply, socket}
   end
 
@@ -95,7 +96,7 @@ defmodule LiveStudioWeb.FlightsLive do
       assign(socket,
         flights: Flights.search_by_airport(airport),
         loading: false
-    )
+      )
 
     {:noreply, socket}
   end
