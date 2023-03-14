@@ -20,4 +20,23 @@ defmodule LiveStudioWeb.CustomComponents do
     </div>
     """
   end
+
+  attr :label, :string, required: true
+  attr :class, :string, default: nil
+  attr :rest, :global
+
+  # <.badge label="filmed" class="bg-gray-300 font-bold" id="status-filmed" phx-click="remove" />
+  # <.badge label="edited" class="bg-blue-300 font-bold" id="status-edited" phx-click="remove" />
+  # <.badge label="released" class="bg-gray-300 font-bold" id="status-released" phx-click="remove" />
+
+  def badge(assigns) do
+    ~H"""
+    <span class={["inline-flex items-center gap-0.5 rounded-full
+            px-3 py-0.5 text-sm font-medium
+            text-gray-800 hover:cursor-pointer", @class]} {@rest}>
+      <%= @label %>
+      <Heroicons.x_mark class="h-3 w-3 text-gray-600" />
+    </span>
+    """
+  end
 end
