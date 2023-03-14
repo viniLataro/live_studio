@@ -554,6 +554,50 @@ h3 {
   @apply text-sm font-light text-slate-400 tabular-nums;
 }
 
+/* Vehicles */
+
+#vehicles {
+  @apply mt-8 max-w-xl mx-auto text-center;
+}
+#vehicles form {
+  @apply inline-flex items-center px-2;
+}
+#vehicles form input[type="text"] {
+  @apply h-10 border border-slate-400 rounded-l-md bg-white px-5 text-base;
+}
+#vehicles form input[type="text"]:focus {
+  @apply outline-none;
+}
+#vehicles button {
+  @apply h-10 px-3 py-2 bg-transparent border border-slate-400 border-l-0 rounded-r-md transition ease-in-out duration-150 outline-none hover:bg-slate-300;
+}
+#vehicles button img,
+#vehicles button svg {
+  @apply h-5 w-5;
+}
+#vehicles .vehicles {
+  @apply my-8 bg-white shadow overflow-hidden rounded-md;
+}
+#vehicles .vehicles li {
+  @apply border-t border-slate-300 px-6 py-4 grid items-center;
+  grid-template-columns: 50% 35% 15%;
+}
+#vehicles .vehicles li .make-model {
+  @apply font-semibold text-left;
+}
+#vehicles .vehicles li .color {
+  @apply text-slate-600 text-left;
+}
+#vehicles .vehicles li .status {
+  @apply w-20 px-3 py-1 rounded-full font-medium text-xs text-slate-600;
+}
+#vehicles .vehicles li .status.new {
+  @apply bg-green-300;
+}
+#vehicles .vehicles li .status.used {
+  @apply bg-yellow-300;
+}
+
 /* Promo Component */
 
 .promo {

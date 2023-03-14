@@ -24,6 +24,7 @@ defmodule LiveStudioWeb.Router do
     live "/sales", SalesLive
     live "/bingo", BingoLive
     live "/flights", FlightsLive
+    live "/vehicles", VehiclesLive
     live "/boats", BoatsLive
     live "/servers", ServersLive
     live "/servers/:id", ServersLive
