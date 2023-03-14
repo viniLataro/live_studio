@@ -1,5 +1,4 @@
 defmodule LiveStudioWeb.Router do
-  alias LiveStudio.Athletes
   use LiveStudioWeb, :router
 
   pipeline :browser do
