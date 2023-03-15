@@ -640,6 +640,76 @@ h3 {
   @apply inline underline text-lg cursor-pointer;
 }
 
+/* Pizza Orders */
+
+#pizza-orders {
+  @apply mt-8 max-w-5xl mx-auto;
+}
+#pizza-orders .wrapper {
+  @apply mb-4 align-middle inline-block min-w-full shadow overflow-hidden rounded-lg border-b border-slate-300;
+}
+#pizza-orders a {
+  @apply underline text-orange-500 font-semibold;
+}
+#pizza-orders table {
+  @apply min-w-full;
+}
+#pizza-orders table th {
+  @apply bg-transparent px-6 py-4 border-b border-slate-300 bg-orange-700 text-base font-medium uppercase tracking-wider text-center text-white;
+}
+#pizza-orders table th a {
+  @apply no-underline text-white;
+}
+#pizza-orders table td {
+  @apply px-6 py-4 whitespace-nowrap border-b border-slate-300 text-lg font-medium text-slate-900 text-left;
+}
+#pizza-orders table tbody {
+  @apply bg-white;
+}
+#pizza-orders table td.id {
+  @apply text-center text-slate-400 tabular-nums;
+}
+#pizza-orders table td.price {
+  @apply text-right tabular-nums;
+}
+#pizza-orders .footer {
+  @apply text-center bg-white max-w-5xl mx-auto text-lg py-8;
+}
+#pizza-orders .footer .pagination {
+  @apply inline-flex shadow-sm;
+}
+#pizza-orders .footer a {
+  @apply -ml-px inline-flex items-center px-3 py-2 border border-slate-300 bg-white text-base font-medium text-slate-600 no-underline;
+}
+#pizza-orders .footer a:hover {
+  @apply bg-slate-300;
+}
+#pizza-orders .footer a.active {
+  @apply bg-slate-800 text-white;
+}
+#pizza-orders .footer a:first-child {
+  @apply rounded-l-md;
+}
+#pizza-orders .footer a:last-child {
+  @apply rounded-r-md;
+}
+#pizza-orders .footer a.previous {
+  @apply rounded-l-md;
+}
+#pizza-orders .footer a.next {
+  @apply rounded-r-md;
+}
+#pizza-orders form {
+  @apply flex items-center justify-end mb-4;
+}
+#pizza-orders form select {
+  @apply appearance-none bg-slate-200 border border-slate-400 text-slate-700 py-0 pr-7 mr-2 h-8 rounded-lg font-semibold cursor-pointer text-sm mx-1;
+}
+#pizza-orders form select:focus {
+  @apply outline-none bg-slate-200 border-orange-500 ring-orange-500;
+}
+
+
 /* Promo Component */
 
 .promo {
