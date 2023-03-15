@@ -1,4 +1,5 @@
 defmodule LiveStudioWeb.Router do
+  alias LiveStudio.PizzaOrders
   use LiveStudioWeb, :router
 
   pipeline :browser do
@@ -30,6 +31,7 @@ defmodule LiveStudioWeb.Router do
     live "/servers", ServersLive
     live "/servers/:id", ServersLive
     live "/donations", DonationsLive
+    live "/pizza-orders", PizzaOrdersLive
     live "/volunteers", VolunteersLive
   end
 
