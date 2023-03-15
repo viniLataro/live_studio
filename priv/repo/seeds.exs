@@ -341,3 +341,45 @@ for _i <- 1..200 do
   }
   |> Repo.insert!()
 end
+
+alias LiveStudio.PizzaOrders.PizzaOrder
+
+pizza_toppings = [
+  "Chicken 🍗",
+  "Basil 🌿",
+  "Garlic 🧄",
+  "Bacon 🥓",
+  "Cheese 🧀",
+  "Salmon 🐠",
+  "Shrimp 🍤",
+  "Broccoli 🥦",
+  "Onions 🧅",
+  "Tomatoes 🍅",
+  "Mushrooms 🍄",
+  "Pineapples 🍍",
+  "Eggplants 🍆",
+  "Avocados 🥑",
+  "Peppers 🌶",
+  "Pepperoni 🍕"
+]
+
+for _i <- 1..1000 do
+  [topping_1, topping_2] =
+    pizza_toppings
+    |> Enum.shuffle()
+    |> Enum.take(2)
+
+  price =
+    (:rand.uniform() * (30 - 10) + 30)
+    |> Decimal.from_float()
+    |> Decimal.round(2)
+
+  %PizzaOrder{
+    size: Faker.Pizza.size(),
+    style: Faker.Pizza.style(),
+    topping_1: topping_1,
+    topping_2: topping_2,
+    price: price
+  }
+  |> Repo.insert!()
+end
