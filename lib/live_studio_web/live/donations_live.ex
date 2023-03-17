@@ -12,7 +12,7 @@ defmodule LiveStudioWeb.DonationsLive do
     sort_order = valid_sort_order(params)
 
     page = param_to_integer(params["page"], 1)
-    per_page = param_to_integer(params["per-page"], 5)
+    per_page = param_to_integer(params["per_page"], 5)
 
     options = %{
       sort_by: sort_by,
