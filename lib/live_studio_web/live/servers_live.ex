@@ -70,13 +70,13 @@ defmodule LiveStudioWeb.ServersLive do
           <%= if @live_action == :new do %>
             <.form for={@form} phx-submit="save">
               <div class="field">
-                <.input field={@form[:name]} placeholder="Name" />
+                <.input field={@form[:name]} placeholder="ex-name" label="Name" />
               </div>
               <div class="field">
-                <.input field={@form[:framework]} placeholder="Framework" />
+                <.input field={@form[:framework]} placeholder="Framework" label="Framework" />
               </div>
               <div class="field">
-                <.input field={@form[:size]} placeholder="Size (MB)" type="number" />
+                <.input field={@form[:size]} type="number" label="Size (MB)" />
               </div>
               <.button phx-disable-with="Saving...">
                 Save
