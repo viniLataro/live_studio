@@ -68,12 +68,17 @@ defmodule LiveStudioWeb.ServersLive do
       <div class="main">
         <div class="wrapper">
           <%= if @live_action == :new do %>
-            <.form for={@form} phx-submit="save">
+            <.form for={@form} phx-submit="save" phx-change="validate">
               <div class="field">
-                <.input field={@form[:name]} placeholder="ex-name" label="Name" />
+                <.input field={@form[:name]} placeholder="ex-name" label="Name" phx-debounce="500" />
               </div>
               <div class="field">
-                <.input field={@form[:framework]} placeholder="Framework" label="Framework" />
+                <.input
+                  field={@form[:framework]}
+                  placeholder="Framework"
+                  label="Framework"
+                  phx-debounce="500"
+                />
               </div>
               <div class="field">
                 <.input field={@form[:size]} type="number" label="Size (MB)" />
@@ -129,6 +134,15 @@ defmodule LiveStudioWeb.ServersLive do
     """
   end
 
+  def handle_event("validate", %{"server" => server_params}, socket) do
+    changeset =
+      %Server{}
+      |> Servers.change_server(server_params)
+      |> Map.put(:action, :validate)
+
+    {:noreply, assign_form(socket, changeset)}
+  end
+
   def handle_event("save", %{"server" => server_params}, socket) do
     case Servers.create_server(server_params) do
       {:ok, server} ->
@@ -136,9 +150,14 @@ defmodule LiveStudioWeb.ServersLive do
 
         socket = push_patch(socket, to: ~p"/servers?#{server}")
 
+        socket = put_flash(socket, :info, "Server successfully created!")
+
         {:noreply, socket}
 
       {:error, changeset} ->
+        socket =
+          put_flash(socket, :error, "Oops! Something went wrong, please check the errors below.")
+
         {:noreply, assign_form(socket, changeset)}
     end
   end
