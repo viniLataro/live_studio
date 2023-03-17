@@ -29,6 +29,7 @@ defmodule LiveStudioWeb.Router do
     live "/boats", BoatsLive
     live "/athletes", AthletesLive
     live "/servers", ServersLive
+    live "/servers/new", ServersLive, :new
     live "/servers/:id", ServersLive
     live "/donations", DonationsLive
     live "/pizza-orders", PizzaOrdersLive
