@@ -31,14 +31,25 @@ defmodule LiveStudio.PizzaOrders do
   def list_pizza_orders(options) when is_map(options) do
     from(PizzaOrder)
     |> sort(options)
+    |> paginate(options)
     |> Repo.all()
   end
 
-  def sort(query, %{sort_by: sort_by, sort_order: sort_order}) do
+  defp sort(query, %{sort_by: sort_by, sort_order: sort_order}) do
     order_by(query, {^sort_order, ^sort_by})
   end
 
-  def sort(query, _options), do: query
+  defp sort(query, _options), do: query
+
+  defp paginate(query, %{page: page, per_page: per_page}) do
+    offset = max((page - 1) * per_page, 0)
+
+    query
+    |> limit(^per_page)
+    |> offset(^offset)
+  end
+
+  defp paginate(query, _options), do: query
 
   @doc """
   Gets a single pizza_order.
