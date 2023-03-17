@@ -66,6 +66,14 @@
         </.link>
 
         <.link
+          :for={{page_number, current_page?} <- pages(@options, @pizza_order_count)}
+          class={if current_page?, do: "active"}
+          patch={~p"/pizza-orders?#{%{@options | page: page_number}}"}
+        >
+          <%= page_number %>
+        </.link>
+
+        <.link
           :if={more_pages?(@options, @pizza_order_count)}
           patch={~p"/pizza-orders?#{%{@options | page: @options.page + 1}}"}
         >

@@ -67,6 +67,17 @@ defmodule LiveStudioWeb.PizzaOrdersLive do
     options.page * options.per_page < pizza_order_count
   end
 
+  defp pages(options, pizza_order_count) do
+    page_count = ceil(pizza_order_count / options.per_page)
+
+    for page_number <- (options.page - 2)..(options.page + 2), page_number > 0 do
+      if page_number <= page_count do
+        current_page? = page_number == options.page
+        {page_number, current_page?}
+      end
+    end
+  end
+
   defp sort_indicator(column, %{sort_by: sort_by, sort_order: sort_order})
        when column == sort_by do
     case sort_order do
