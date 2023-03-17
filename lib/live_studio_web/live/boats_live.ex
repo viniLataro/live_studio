@@ -4,13 +4,22 @@ defmodule LiveStudioWeb.BoatsLive do
   alias LiveStudio.Boats
 
   def mount(_params, _session, socket) do
-    socket =
-      assign(socket,
-        filter: %{type: "", prices: []},
-        boats: Boats.list_boats()
-      )
-
     {:ok, socket, temporary_assigns: [boats: []]}
+  end
+
+  def handle_params(params, _uri, socket) do
+    filter = %{
+      type: params["type"] || "",
+      prices: params["prices"] || [""]
+    }
+
+    boats = Boats.list_boats(filter)
+
+    {:noreply,
+     assign(socket,
+       filter: filter,
+       boats: boats
+     )}
   end
 
   def render(assigns) do
@@ -20,8 +29,7 @@ defmodule LiveStudioWeb.BoatsLive do
     <.promo expiration={2}>
       Save 25% on rentals
       <:legal>
-        <Heroicons.exclamation_circle />
-        Limit 1 per party
+        <Heroicons.exclamation_circle /> Limit 1 per party
       </:legal>
     </.promo>
 
@@ -89,11 +97,9 @@ defmodule LiveStudioWeb.BoatsLive do
   end
 
   def handle_event("filter", %{"type" => type, "prices" => prices}, socket) do
-    filter = %{type: type, prices: prices}
+    params = %{type: type, prices: prices}
 
-    boats = Boats.list_boats(filter)
-
-    {:noreply, assign(socket, boats: boats, filter: filter)}
+    {:noreply, push_patch(socket, to: ~p"/boats?#{params}")}
   end
 
   defp type_options do
