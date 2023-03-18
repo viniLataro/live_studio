@@ -8,6 +8,18 @@ defmodule LiveStudio.Volunteers do
 
   alias LiveStudio.Volunteers.Volunteer
 
+  def subscribe do
+    Phoenix.PubSub.subscribe(LiveStudio.PubSub, "volunteers")
+  end
+
+  def broadcast({:ok, volunteer}, tag) do
+    Phoenix.PubSub.broadcast(LiveStudio.PubSub, "volunteers", {tag, volunteer})
+
+    {:ok, volunteer}
+  end
+
+  def broadcast({:error, _changeset} = error, _tag), do: error
+
   @doc """
   Returns the list of volunteers.
 
@@ -53,6 +65,7 @@ defmodule LiveStudio.Volunteers do
     %Volunteer{}
     |> Volunteer.changeset(attrs)
     |> Repo.insert()
+    |> broadcast(:volunteer_created)
   end
 
   @doc """
@@ -71,6 +84,7 @@ defmodule LiveStudio.Volunteers do
     volunteer
     |> Volunteer.changeset(attrs)
     |> Repo.update()
+    |> broadcast(:volunteer_updated)
   end
 
   def toggle_status_volunteer(%Volunteer{} = volunteer) do
