@@ -1,10 +1,14 @@
 defmodule LiveStudioWeb.ServersLive do
   use LiveStudioWeb, :live_view
 
-  alias LiveStudioWeb.ServerFormComponent
   alias LiveStudio.Servers
+  alias LiveStudioWeb.ServerFormComponent
 
   def mount(_params, _session, socket) do
+    if connected?(socket) do
+      Servers.subscribe()
+    end
+
     servers = Servers.list_servers()
 
     socket =
@@ -139,9 +143,25 @@ defmodule LiveStudioWeb.ServersLive do
         fn servers -> [server | servers] end
       )
 
-    socket = put_flash(socket, :info, "Server successfully created!")
+    {:noreply, socket}
+  end
 
-    socket = push_patch(socket, to: ~p"/servers/#{server}")
+  def handle_info({:server_updated, server}, socket) do
+    # If the updated server is the selected server,
+    # assign it so the status button is re-rendered:
+
+    if server.id == socket.assigns.selected_server.id do
+      assign(socket, selected_server: server)
+    else
+      socket
+    end
+
+    socket =
+      update(socket, :servers, fn servers ->
+        for s <- servers do
+          if s.id == server.id, do: server, else: s
+        end
+      end)
 
     {:noreply, socket}
   end

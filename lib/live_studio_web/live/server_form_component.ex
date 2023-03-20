@@ -42,8 +42,8 @@ defmodule LiveStudioWeb.ServerFormComponent do
   def handle_event("save", %{"server" => server_params}, socket) do
     case Servers.create_server(server_params) do
       {:ok, server} ->
-        send(self(), {:server_created, server})
-
+        socket = push_patch(socket, to: ~p"/servers/#{server}")
+        socket = put_flash(socket, :info, "Server has been succesfully created!")
         {:noreply, socket}
 
       {:error, changeset} ->

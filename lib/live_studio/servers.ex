@@ -8,6 +8,18 @@ defmodule LiveStudio.Servers do
 
   alias LiveStudio.Servers.Server
 
+  def subscribe do
+    Phoenix.PubSub.subscribe(LiveStudio.PubSub, "servers")
+  end
+
+  def broadcast({:ok, server}, tag) do
+    Phoenix.PubSub.broadcast(LiveStudio.PubSub, "servers", {tag, server})
+
+    {:ok, server}
+  end
+
+  def broadcast({:error, _changeset} = error, _tag), do: error
+
   @doc """
   Returns the list of servers.
 
@@ -18,7 +30,7 @@ defmodule LiveStudio.Servers do
 
   """
   def list_servers do
-    Repo.all(from s in Server, order_by: [desc: s.id])
+    Repo.all(from(s in Server, order_by: [desc: s.id]))
   end
 
   @doc """
@@ -53,6 +65,7 @@ defmodule LiveStudio.Servers do
     %Server{}
     |> Server.changeset(attrs)
     |> Repo.insert()
+    |> broadcast(:server_created)
   end
 
   @doc """
@@ -71,6 +84,7 @@ defmodule LiveStudio.Servers do
     server
     |> Server.changeset(attrs)
     |> Repo.update()
+    |> broadcast(:server_updated)
   end
 
   @doc """
