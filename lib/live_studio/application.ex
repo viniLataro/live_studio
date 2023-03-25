@@ -14,6 +14,7 @@ defmodule LiveStudio.Application do
       LiveStudio.Repo,
       # Start the PubSub system
       {Phoenix.PubSub, name: LiveStudio.PubSub},
+      LiveStudioWeb.Presence,
       # Start Finch
       {Finch, name: LiveStudio.Finch},
       # Start the Endpoint (http/https)
