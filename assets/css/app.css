@@ -528,6 +528,53 @@ h3 {
   @apply px-3 py-2 border border-transparent font-medium rounded-md text-white bg-amber-400 transition duration-150 ease-in-out outline-none flex-initial text-lg w-28 hover:bg-yellow-500 focus:outline-none focus:border-yellow-700 focus:ring focus:ring-yellow-300;
 }
 
+/* Presence */
+
+#presence {
+  @apply mt-16 flex max-w-3xl mx-auto;
+}
+#presence pre {
+  @apply whitespace-normal select-none;
+}
+#presence .users {
+  @apply w-1/2;
+}
+#presence .users h2 {
+  @apply text-xl mb-4 font-semibold select-none flex items-center justify-center gap-4;
+}
+#presence .users h2 button {
+  @apply text-slate-600;
+}
+#presence .users h2 button.muted {
+  @apply text-slate-400;
+}
+#presence .users h2 button svg,
+#presence .users h2 button .hero-list-bullet-solid {
+  @apply h-6 w-6;
+}
+#presence .users ul {
+  @apply bg-white rounded-lg shadow-lg list-none divide-y divide-slate-300;
+}
+#presence .users ul li {
+  @apply px-6 py-2 flex items-center select-none;
+}
+#presence .users ul li .dot {
+  @apply inline-block rounded-full bg-indigo-500 p-2 mr-3;
+}
+#presence .users ul li .status {
+  @apply inline-block p-2 mr-1;
+}
+#presence .users ul li .username {
+  @apply text-base font-medium text-slate-700;
+}
+#presence .video {
+  @apply flex items-center justify-center ml-8 px-6 border-4 border-slate-400 border-dashed w-full rounded-lg h-72 min-h-max aspect-video cursor-pointer;
+}
+#presence .video .hero-pause-circle-solid,
+#presence .video .hero-play-circle-solid {
+  @apply text-slate-400 h-20 w-20;
+}
+
 /* Authentication */
 
 form[id="login_form"],
