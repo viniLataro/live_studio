@@ -12,47 +12,32 @@
     </script>
   </head>
   <body>
-    <ul class="relative z-10 flex items-center gap-4 px-4 sm:px-6 lg:px-8 justify-end">
-      <%= if @current_user do %>
-        <li class="text-[0.8125rem] leading-6 text-zinc-900">
-          <%= @current_user.email %>
-        </li>
-        <li>
-          <.link
-            href={~p"/users/settings"}
-            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
-          >
-            Settings
-          </.link>
-        </li>
-        <li>
-          <.link
-            href={~p"/users/log_out"}
-            method="delete"
-            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
-          >
-            Log out
-          </.link>
-        </li>
-      <% else %>
-        <li>
-          <.link
-            href={~p"/users/register"}
-            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
-          >
-            Register
-          </.link>
-        </li>
-        <li>
-          <.link
-            href={~p"/users/log_in"}
-            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
-          >
-            Log in
-          </.link>
-        </li>
-      <% end %>
-    </ul>
-    <%= @inner_content %>
+    <.flash_group flash={@flash} />
+    <!-- Static sidebar for desktop -->
+    <div class="h-screen lg:flex lg:flex-shrink-0" role="region">
+      <div class="flex flex-col w-64 border-r border-gray-200 pt-5 pb-4 bg-gray-100">
+        <div class="h-0 flex-1 flex flex-col overflow-y-auto">
+          <div class="flex items-center flex-shrink-0 px-6">
+            <.link navigate={~p"/"}>
+              <.icon name="hero-code-bracket-square" class="w-8 h-8 -mt-2 inline-block" />
+              <span class="h-8 w-auto text-2xl ml-1 font-bold">
+                LiveStudio
+              </span>
+            </.link>
+          </div>
+          <div>
+            <LeftSideBar.sidebar_user_info current_user={@current_user} />
+          </div>
+          <nav class="h-full px-3 mt-6">
+            <LeftSideBar.sidebar_nav_links />
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="fixed inset-0 flex z-40 sm:ml-64">
+      <div class="flex-1 relative z-0 overflow-auto focus:outline-none">
+        <%= @inner_content %>
+      </div>
+    </div>
   </body>
 </html>
