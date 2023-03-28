@@ -32,7 +32,7 @@ defmodule LiveStudioWeb.VolunteerFormComponent do
           type="tel"
           placeholder="Phone"
           autocomplete="off"
-          phx-debounce="blur"
+          phx-debounce="2000"
         />
         <.button phx-disable-with="Saving...">
           Check In
