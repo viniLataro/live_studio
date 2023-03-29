@@ -1,5 +1,6 @@
 defmodule LiveStudioWeb.UserSessionController do
-  use LiveStudioWeb, :controller
+  use Phoenix.Controller, layouts: [html: {LiveStudioWeb.Layouts, :site}]
+  use LiveStudioWeb, :verified_routes
 
   alias LiveStudio.Accounts
   alias LiveStudioWeb.UserAuth

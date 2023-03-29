@@ -23,11 +23,16 @@ defmodule LiveStudioWeb.Router do
     plug :fetch_current_user
   end
 
+  pipeline :site do
+    plug(:put_layout, html: {LiveStudioWeb.Layouts, :site})
+  end
+
   scope "/app", LiveStudioWeb.Live.App do
     pipe_through [:browser, :app]
 
     live_session :authenticated,
       on_mount: [{LiveStudioWeb.UserAuth, :ensure_authenticated}, App.Nav] do
+      live "/", LightLive, :show
       live "/light", LightLive, :show
       live "/sandbox", SandboxLive, :show
       live "/sales", SalesLive, :show
@@ -47,10 +52,9 @@ defmodule LiveStudioWeb.Router do
     end
   end
 
-  ## Authentication routes
-
+  ## Site / Register / Login Routes
   scope "/", LiveStudioWeb do
-    pipe_through [:browser, :redirect_if_user_is_authenticated]
+    pipe_through [:browser, :site, :redirect_if_user_is_authenticated]
 
     live_session :redirect_if_user_is_authenticated,
       on_mount: [{LiveStudioWeb.UserAuth, :redirect_if_user_is_authenticated}] do
@@ -65,7 +69,7 @@ defmodule LiveStudioWeb.Router do
   end
 
   scope "/", LiveStudioWeb do
-    pipe_through [:browser]
+    pipe_through [:browser, :site]
 
     live_session :require_authenticated_user,
       on_mount: [{LiveStudioWeb.UserAuth, :ensure_authenticated}] do

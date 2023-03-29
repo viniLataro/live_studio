@@ -1,5 +1,5 @@
 defmodule LiveStudioWeb.UserRegistrationLive do
-  use LiveStudioWeb, :live_view
+  use LiveStudioWeb, {:live_view, [layout: {LiveStudioWeb.Layouts, :site}]}
 
   alias LiveStudio.Accounts
   alias LiveStudio.Accounts.User
@@ -49,10 +49,6 @@ defmodule LiveStudioWeb.UserRegistrationLive do
       socket
       |> assign(trigger_submit: false, check_errors: false)
       |> assign_form(changeset)
-
-    socket =
-      socket
-      |> assign(active_tab: nil)
 
     {:ok, socket, temporary_assigns: [form: nil]}
   end

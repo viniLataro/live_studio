@@ -39,20 +39,29 @@ defmodule LiveStudioWeb do
   def controller do
     quote do
       use Phoenix.Controller,
+        namespace: LiveStudioWeb,
         formats: [:html, :json],
         layouts: [html: LiveStudioWeb.Layouts]
 
       import Plug.Conn
       import LiveStudioWeb.Gettext
-
+      alias LiveStudioWeb.Router.Helpers, as: Routes
       unquote(verified_routes())
     end
   end
 
-  def live_view do
+  ### TODO
+  def live_view(opts \\ []) do
     quote do
-      use Phoenix.LiveView,
-        layout: {LiveStudioWeb.Layouts, :app}
+      @opts Keyword.merge(
+              [
+                layout: {LiveStudioWeb.Layouts, :app},
+                container: {:div, class: "relative h-screen flex overflow-hidden bg-white"}
+              ],
+              unquote(opts)
+            )
+
+      use Phoenix.LiveView, @opts
 
       unquote(html_helpers())
     end
@@ -81,12 +90,18 @@ defmodule LiveStudioWeb do
 
   defp html_helpers do
     quote do
+      # Use all HTML functionality (forms, tags, etc)
+      use Phoenix.HTML
+
       # HTML escaping functionality
       import Phoenix.HTML
+
       # Core UI components and translation
       import LiveStudioWeb.CoreComponents
       import LiveStudioWeb.CustomComponents
       import LiveStudioWeb.Gettext
+
+      alias LiveStudioWeb.Router.Helpers, as: Routes
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
@@ -108,6 +123,11 @@ defmodule LiveStudioWeb do
   @doc """
   When used, dispatch to the appropriate controller/view/etc.
   """
+
+  defmacro __using__({which, opts}) when is_atom(which) do
+    apply(__MODULE__, which, [opts])
+  end
+
   defmacro __using__(which) when is_atom(which) do
     apply(__MODULE__, which, [])
   end

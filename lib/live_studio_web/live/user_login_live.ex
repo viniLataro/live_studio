@@ -1,5 +1,5 @@
 defmodule LiveStudioWeb.UserLoginLive do
-  use LiveStudioWeb, :live_view
+  use LiveStudioWeb, {:live_view, [layout: {LiveStudioWeb.Layouts, :site}]}
 
   def render(assigns) do
     ~H"""
@@ -36,10 +36,6 @@ defmodule LiveStudioWeb.UserLoginLive do
   end
 
   def mount(_params, _session, socket) do
-    socket =
-      socket
-      |> assign(active_tab: nil)
-
     email = live_flash(socket.assigns.flash, :email)
     form = to_form(%{"email" => email}, as: "user")
     {:ok, assign(socket, form: form), temporary_assigns: [form: form]}

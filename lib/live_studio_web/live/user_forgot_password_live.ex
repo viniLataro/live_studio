@@ -1,5 +1,5 @@
 defmodule LiveStudioWeb.UserForgotPasswordLive do
-  use LiveStudioWeb, :live_view
+  use LiveStudioWeb, {:live_view, [layout: {LiveStudioWeb.Layouts, :site}]}
 
   alias LiveStudio.Accounts
 
@@ -29,10 +29,6 @@ defmodule LiveStudioWeb.UserForgotPasswordLive do
   end
 
   def mount(_params, _session, socket) do
-    socket =
-      socket
-      |> assign(active_tab: nil)
-
     {:ok, assign(socket, form: to_form(%{}, as: "user"))}
   end
 
