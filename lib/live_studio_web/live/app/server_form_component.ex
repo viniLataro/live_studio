@@ -1,4 +1,4 @@
-defmodule LiveStudioWeb.ServerFormComponent do
+defmodule LiveStudioWeb.Live.App.ServerFormComponent do
   use LiveStudioWeb, :live_component
 
   alias LiveStudio.Servers
@@ -31,7 +31,7 @@ defmodule LiveStudioWeb.ServerFormComponent do
         <.button phx-disable-with="Saving...">
           Save
         </.button>
-        <.link patch={~p"/servers"} class="cancel">
+        <.link patch={~p"/app/servers"} class="cancel">
           Cancel
         </.link>
       </.form>
@@ -42,7 +42,7 @@ defmodule LiveStudioWeb.ServerFormComponent do
   def handle_event("save", %{"server" => server_params}, socket) do
     case Servers.create_server(server_params) do
       {:ok, server} ->
-        socket = push_patch(socket, to: ~p"/servers/#{server}")
+        socket = push_patch(socket, to: ~p"/app/servers/#{server}")
         socket = put_flash(socket, :info, "Server has been succesfully created!")
         {:noreply, socket}
 

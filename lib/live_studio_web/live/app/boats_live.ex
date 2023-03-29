@@ -1,4 +1,4 @@
-defmodule LiveStudioWeb.BoatsLive do
+defmodule LiveStudioWeb.Live.App.BoatsLive do
   use LiveStudioWeb, :live_view
 
   alias LiveStudio.Boats
@@ -99,7 +99,7 @@ defmodule LiveStudioWeb.BoatsLive do
   def handle_event("filter", %{"type" => type, "prices" => prices}, socket) do
     params = %{type: type, prices: prices}
 
-    {:noreply, push_patch(socket, to: ~p"/boats?#{params}")}
+    {:noreply, push_patch(socket, to: ~p"/app/boats?#{params}")}
   end
 
   defp type_options do

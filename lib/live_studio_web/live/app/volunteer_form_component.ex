@@ -1,4 +1,4 @@
-defmodule LiveStudioWeb.VolunteerFormComponent do
+defmodule LiveStudioWeb.Live.App.VolunteerFormComponent do
   use LiveStudioWeb, :live_component
 
   alias LiveStudio.Volunteers
@@ -32,7 +32,7 @@ defmodule LiveStudioWeb.VolunteerFormComponent do
           type="tel"
           placeholder="Phone"
           autocomplete="off"
-          phx-debounce="blur"
+          phx-debounce="2000"
         />
         <.button phx-disable-with="Saving...">
           Check In

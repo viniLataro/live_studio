@@ -1,4 +1,4 @@
-defmodule LiveStudioWeb.PresenceLive do
+defmodule LiveStudioWeb.Live.App.PresenceLive do
   use LiveStudioWeb, :live_view
 
   alias LiveStudioWeb.Presence

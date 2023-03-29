@@ -1,8 +1,8 @@
-defmodule LiveStudioWeb.ServersLive do
+defmodule LiveStudioWeb.Live.App.ServersLive do
   use LiveStudioWeb, :live_view
 
   alias LiveStudio.Servers
-  alias LiveStudioWeb.ServerFormComponent
+  alias LiveStudioWeb.Live.App.ServerFormComponent
 
   def mount(_params, _session, socket) do
     if connected?(socket) do
@@ -47,12 +47,12 @@ defmodule LiveStudioWeb.ServersLive do
     <div id="servers">
       <div class="sidebar">
         <div class="nav">
-          <.link patch={~p"/servers/new"} class="add">
+          <.link patch={~p"/app/servers/new"} class="add">
             + add new Server
           </.link>
           <.link
             :for={server <- @servers}
-            patch={~p"/servers/#{server}"}
+            patch={~p"/app/servers/#{server}"}
             class={if server == @selected_server, do: "selected"}
           >
             <span class={server.status}></span>
@@ -74,7 +74,7 @@ defmodule LiveStudioWeb.ServersLive do
             <.server server={@selected_server} />
           <% end %>
           <div class="links">
-            <.link navigate={~p"/light"}>
+            <.link navigate={~p"/app/light"}>
               Adjust Lights
             </.link>
           </div>

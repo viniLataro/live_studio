@@ -1,5 +1,5 @@
 defmodule LiveStudioWeb.UserConfirmationLive do
-  use LiveStudioWeb, :live_view
+  use LiveStudioWeb, {:live_view, [layout: {LiveStudioWeb.Layouts, :site}]}
 
   alias LiveStudio.Accounts
 

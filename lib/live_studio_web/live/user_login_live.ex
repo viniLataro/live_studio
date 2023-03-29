@@ -1,5 +1,5 @@
 defmodule LiveStudioWeb.UserLoginLive do
-  use LiveStudioWeb, :live_view
+  use LiveStudioWeb, {:live_view, [layout: {LiveStudioWeb.Layouts, :site}]}
 
   def render(assigns) do
     ~H"""

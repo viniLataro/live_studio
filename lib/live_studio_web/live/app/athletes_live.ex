@@ -1,4 +1,4 @@
-defmodule LiveStudioWeb.AthletesLive do
+defmodule LiveStudioWeb.Live.App.AthletesLive do
   use LiveStudioWeb, :live_view
 
   alias LiveStudio.Athletes

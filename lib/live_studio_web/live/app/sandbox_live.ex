@@ -1,4 +1,4 @@
-defmodule LiveStudioWeb.SandboxLive do
+defmodule LiveStudioWeb.Live.App.SandboxLive do
   use LiveStudioWeb, :live_view
 
   import Number.Currency

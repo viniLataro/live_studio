@@ -1,7 +1,6 @@
 defmodule LiveStudioWeb.UserSettingsLive do
-  use LiveStudioWeb, :live_view
-
-  alias LiveStudio.Accounts
+  use LiveStudioWeb, {:live_view, [layout: {LiveStudioWeb.Layouts, :site}]}
+  alias(LiveStudio.Accounts)
 
   def render(assigns) do
     ~H"""

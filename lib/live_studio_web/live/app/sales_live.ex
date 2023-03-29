@@ -1,4 +1,4 @@
-defmodule LiveStudioWeb.SalesLive do
+defmodule LiveStudioWeb.Live.App.SalesLive do
   use LiveStudioWeb, :live_view
 
   alias LiveStudio.Sales
@@ -59,9 +59,9 @@ defmodule LiveStudioWeb.SalesLive do
 
   defp assign_stats(socket) do
     assign(socket,
-        new_orders: Sales.new_orders(),
-        sales_amount: Sales.sales_amount(),
-        satisfaction: Sales.satisfaction()
-      )
+      new_orders: Sales.new_orders(),
+      sales_amount: Sales.sales_amount(),
+      satisfaction: Sales.satisfaction()
+    )
   end
 end

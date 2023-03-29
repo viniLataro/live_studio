@@ -1,8 +1,8 @@
-defmodule LiveStudioWeb.VolunteersLive do
+defmodule LiveStudioWeb.Live.App.VolunteersLive do
   use LiveStudioWeb, :live_view
 
   alias LiveStudio.Volunteers
-  alias LiveStudioWeb.VolunteerFormComponent
+  alias LiveStudioWeb.Live.App.VolunteerFormComponent
 
   def mount(_params, _session, socket) do
     if connected?(socket) do

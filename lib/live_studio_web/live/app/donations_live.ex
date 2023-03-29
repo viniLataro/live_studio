@@ -1,11 +1,10 @@
-defmodule LiveStudioWeb.PizzaOrdersLive do
+defmodule LiveStudioWeb.Live.App.DonationsLive do
   use LiveStudioWeb, :live_view
 
-  alias LiveStudio.PizzaOrders
-  import Number.Currency
+  alias LiveStudio.Donations
 
   def mount(_params, _session, socket) do
-    {:ok, socket, temporary_assigns: [pizza_orders: []]}
+    {:ok, socket, temporary_assigns: [donations: []]}
   end
 
   def handle_params(params, _uri, socket) do
@@ -22,13 +21,14 @@ defmodule LiveStudioWeb.PizzaOrdersLive do
       per_page: per_page
     }
 
-    pizza_orders = PizzaOrders.list_pizza_orders(options)
+    donations = Donations.list_donations(options)
+    donation_count = Donations.donation_count()
 
     socket =
       assign(socket,
-        pizza_orders: pizza_orders,
+        donations: donations,
         options: options,
-        pizza_order_count: PizzaOrders.pizza_order_count()
+        donation_count: donation_count
       )
 
     {:noreply, socket}
@@ -48,7 +48,7 @@ defmodule LiveStudioWeb.PizzaOrdersLive do
     assigns = assign(assigns, params: params)
 
     ~H"""
-    <.link patch={~p"/pizza-orders?#{@params}"}>
+    <.link patch={~p"/app/donations?#{@params}"}>
       <%= render_slot(@inner_block) %>
       <%= sort_indicator(@sort_by, @options) %>
     </.link>
@@ -58,35 +58,10 @@ defmodule LiveStudioWeb.PizzaOrdersLive do
   def handle_event("select-per-page", %{"per-page" => per_page}, socket) do
     params = %{socket.assigns.options | per_page: per_page}
 
-    socket = push_patch(socket, to: ~p"/pizza-orders?#{params}")
+    socket = push_patch(socket, to: ~p"/app/donations?#{params}")
 
     {:noreply, socket}
   end
-
-  defp more_pages?(options, pizza_order_count) do
-    options.page * options.per_page < pizza_order_count
-  end
-
-  defp pages(options, pizza_order_count) do
-    page_count = ceil(pizza_order_count / options.per_page)
-
-    for page_number <- (options.page - 2)..(options.page + 2), page_number > 0 do
-      if page_number <= page_count do
-        current_page? = page_number == options.page
-        {page_number, current_page?}
-      end
-    end
-  end
-
-  defp sort_indicator(column, %{sort_by: sort_by, sort_order: sort_order})
-       when column == sort_by do
-    case sort_order do
-      :asc -> "👆"
-      :desc -> "👇"
-    end
-  end
-
-  defp sort_indicator(_, _), do: ""
 
   defp next_sort_order(sort_order) do
     case sort_order do
@@ -95,15 +70,28 @@ defmodule LiveStudioWeb.PizzaOrdersLive do
     end
   end
 
+  defp sort_indicator(column, %{sort_by: sort_by, sort_order: sort_order})
+       when column == sort_by do
+    case sort_order do
+      :asc ->
+        "👆"
+
+      :desc ->
+        "👇"
+    end
+  end
+
+  defp sort_indicator(_, _), do: ""
+
   defp valid_sort_by(%{"sort_by" => sort_by})
-       when sort_by in ~w(id size style topping_1 topping_2 price) do
-    String.to_atom(sort_by)
+       when sort_by in ~w(item quantity days_until_expires) do
+    String.to_existing_atom(sort_by)
   end
 
   defp valid_sort_by(_params), do: :id
 
   defp valid_sort_order(%{"sort_order" => sort_order}) when sort_order in ~w(asc desc) do
-    String.to_atom(sort_order)
+    String.to_existing_atom(sort_order)
   end
 
   defp valid_sort_order(_params), do: :asc
@@ -114,6 +102,22 @@ defmodule LiveStudioWeb.PizzaOrdersLive do
     case Integer.parse(param) do
       {number, _} -> number
       :error -> default
+    end
+  end
+
+  defp more_pages?(options, donation_count) do
+    options.page * options.per_page < donation_count
+  end
+
+  defp pages(options, donation_count) do
+    page_count = ceil(donation_count / options.per_page)
+
+    for page_number <- (options.page - 2)..(options.page + 2),
+        page_number > 0 do
+      if page_number <= page_count do
+        current_page? = page_number == options.page
+        {page_number, current_page?}
+      end
     end
   end
 end
