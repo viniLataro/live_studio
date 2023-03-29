@@ -11,7 +11,7 @@ defmodule LiveStudioWeb.Live.App.LightLive do
 
   def render(assigns) do
     ~H"""
-    <h1>Front Porch Light</h1>
+    <h1>💡 Light</h1>
     <div id="light">
       <.meter brightness={@brightness} temp={@temp} />
       <.button_control />

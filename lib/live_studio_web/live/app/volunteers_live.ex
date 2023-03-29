@@ -21,7 +21,7 @@ defmodule LiveStudioWeb.Live.App.VolunteersLive do
 
   def render(assigns) do
     ~H"""
-    <h1>Volunteer Check-In</h1>
+    <h1>🙋‍♀️ Volunteer Check-In</h1>
     <div id="volunteer-checkin">
       <.live_component module={VolunteerFormComponent} id={:new} count={@count} />
 

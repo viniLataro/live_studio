@@ -36,6 +36,7 @@ defmodule LiveStudioWeb.Live.App.PresenceLive do
 
   def render(assigns) do
     ~H"""
+    <h1>👀 Presence Live</h1>
     <div id="presence">
       <div class="users">
         <h2>Who's Here?</h2>

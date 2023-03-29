@@ -16,7 +16,7 @@ defmodule LiveStudioWeb.Live.App.AthletesLive do
 
   def render(assigns) do
     ~H"""
-    <h1>Athletes</h1>
+    <h1>🏄🏾‍♀️ Athletes</h1>
     <div id="athletes">
       <.filter_form filter={@filter} />
 

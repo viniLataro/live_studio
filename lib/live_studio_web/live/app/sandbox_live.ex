@@ -19,7 +19,7 @@ defmodule LiveStudioWeb.Live.App.SandboxLive do
 
   def render(assigns) do
     ~H"""
-    <h1>Build A Sandbox</h1>
+    <h1>🏝 Sandbox</h1>
     <div id="sandbox">
       <form phx-change="calculate" phx-submit="get-quote">
         <div class="fields">

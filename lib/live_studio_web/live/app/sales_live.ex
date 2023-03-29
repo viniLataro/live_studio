@@ -13,7 +13,7 @@ defmodule LiveStudioWeb.Live.App.SalesLive do
 
   def render(assigns) do
     ~H"""
-    <h1>Snappy Sales 📊</h1>
+    <h1>📊 Snappy Sales</h1>
     <div id="sales">
       <div class="stats">
         <div class="stat">

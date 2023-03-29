@@ -24,7 +24,7 @@ defmodule LiveStudioWeb.Live.App.BoatsLive do
 
   def render(assigns) do
     ~H"""
-    <h1>Daily Boat Rentals</h1>
+    <h1>🚤 Daily Boat Rentals</h1>
 
     <.promo expiration={2}>
       Save 25% on rentals

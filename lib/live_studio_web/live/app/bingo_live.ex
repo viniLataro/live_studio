@@ -17,7 +17,7 @@ defmodule LiveStudioWeb.Live.App.BingoLive do
 
   def render(assigns) do
     ~H"""
-    <h1>Bingoo! 📢</h1>
+    <h1>🅱️ Bingoo!</h1>
     <div id="bingo">
       <div class="number">
         <%= @number %>
