@@ -1,4 +1,4 @@
-defmodule LiveStudioWeb.BingoLive do
+defmodule LiveStudioWeb.Live.App.BingoLive do
   use LiveStudioWeb, :live_view
 
   def mount(_params, _session, socket) do

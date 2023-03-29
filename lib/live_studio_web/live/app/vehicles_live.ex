@@ -1,4 +1,4 @@
-defmodule LiveStudioWeb.VehiclesLive do
+defmodule LiveStudioWeb.Live.App.VehiclesLive do
   use LiveStudioWeb, :live_view
 
   alias LiveStudio.Vehicles

@@ -1,4 +1,4 @@
-defmodule LiveStudioWeb.VolunteerFormComponent do
+defmodule LiveStudioWeb.Live.App.VolunteerFormComponent do
   use LiveStudioWeb, :live_component
 
   alias LiveStudio.Volunteers

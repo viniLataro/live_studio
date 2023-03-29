@@ -50,6 +50,10 @@ defmodule LiveStudioWeb.UserRegistrationLive do
       |> assign(trigger_submit: false, check_errors: false)
       |> assign_form(changeset)
 
+    socket =
+      socket
+      |> assign(active_tab: nil)
+
     {:ok, socket, temporary_assigns: [form: nil]}
   end
 

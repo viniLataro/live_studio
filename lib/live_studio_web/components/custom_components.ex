@@ -59,22 +59,4 @@ defmodule LiveStudioWeb.CustomComponents do
     </div>
     """
   end
-
-  attr :path, :string, required: true
-  slot :inner_block, required: true
-
-  def nav_link(assigns) do
-    ~H"""
-    <div class="space-y-1 group">
-      <div class="text-gray-500 group-hover:text-gray-600 flex items-center pt-3 text-md rounded-md">
-        <.link
-          class="text-gray-700 hover:text-gray-900 flex items-center px-2 py-2 text-sm font-medium rounded-md hover:bg-gray-200"
-          navigate={@path}
-        >
-          <%= render_slot(@inner_block) %>
-        </.link>
-      </div>
-    </div>
-    """
-  end
 end

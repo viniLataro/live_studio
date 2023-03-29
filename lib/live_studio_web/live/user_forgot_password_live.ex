@@ -29,6 +29,10 @@ defmodule LiveStudioWeb.UserForgotPasswordLive do
   end
 
   def mount(_params, _session, socket) do
+    socket =
+      socket
+      |> assign(active_tab: nil)
+
     {:ok, assign(socket, form: to_form(%{}, as: "user"))}
   end
 

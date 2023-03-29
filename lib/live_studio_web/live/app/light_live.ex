@@ -1,8 +1,11 @@
-defmodule LiveStudioWeb.LightLive do
+defmodule LiveStudioWeb.Live.App.LightLive do
   use LiveStudioWeb, :live_view
 
   def mount(_params, _session, socket) do
-    socket = assign(socket, brightness: 10, temp: "3000")
+    socket =
+      socket
+      |> assign(brightness: 10, temp: "3000")
+
     {:ok, socket}
   end
 

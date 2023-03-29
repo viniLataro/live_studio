@@ -1,4 +1,4 @@
-defmodule LiveStudioWeb.FlightsLive do
+defmodule LiveStudioWeb.Live.App.FlightsLive do
   use LiveStudioWeb, :live_view
 
   alias LiveStudio.Airports
