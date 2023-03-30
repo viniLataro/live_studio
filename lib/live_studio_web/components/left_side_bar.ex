@@ -125,6 +125,18 @@ defmodule LiveStudioWeb.Components.LeftSideBar do
     """
   end
 
+  def sidebar_account_dropdown(assigns) do
+    ~H"""
+    <.dropdown id={@id}>
+      <:img src="/images/spy.svg" default_icon={:user_circle} />
+      <:title><%= @current_user.email %></:title>
+      <:subtitle>admin</:subtitle>
+      <:link navigate={~p"/users/settings"}>Settings</:link>
+      <:link href={~p"/users/log_out"} method={:delete}>Sign out</:link>
+    </.dropdown>
+    """
+  end
+
   attr :path, :string, required: true
   attr :tab, :any, required: true
   attr :active_tab, :any, required: true
@@ -132,14 +144,16 @@ defmodule LiveStudioWeb.Components.LeftSideBar do
 
   defp nav_link(assigns) do
     ~H"""
-    <.link
-      navigate={@path}
-      class={"hover:text-gray-700 hover:bg-gray-200 flex items-center px-3 py-4 text-md font-medium rounded-md
-            #{if @active_tab == @tab, do: "bg-gray-200 text-gray-700", else: " text-gray-500"}"
+    <div class="space-y-1 group">
+      <.link
+        navigate={@path}
+        class={"hover:text-gray-700 hover:bg-gray-200 flex items-center px-3 py-4 text-md font-medium rounded-md
+            #{if @active_tab == @tab, do: "bg-gray-200 text-gray-700", else: "text-gray-500"}"
       }
-    >
-      <%= render_slot(@inner_block) %>
-    </.link>
+      >
+        <%= render_slot(@inner_block) %>
+      </.link>
+    </div>
     """
   end
 end
