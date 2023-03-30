@@ -35,6 +35,8 @@ defmodule LiveStudioWeb.CoreComponents do
   """
   attr :id, :string, required: true
   attr :show, :boolean, default: false
+  attr :navigate, :string
+  attr :patch, :string
   attr :on_cancel, JS, default: %JS{}
   attr :on_confirm, JS, default: %JS{}
 
