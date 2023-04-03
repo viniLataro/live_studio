@@ -49,6 +49,7 @@ defmodule LiveStudioWeb.Router do
       live "/volunteers", VolunteersLive, :show
       live "/topsecret", TopSecretLive, :show
       live "/presence", PresenceLive, :show
+      live "/shop", ShopLive, :show
     end
   end
 
