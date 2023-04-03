@@ -17,7 +17,7 @@ defmodule LiveStudioWeb.Live.App.VehiclesLive do
 
   def render(assigns) do
     ~H"""
-    <h1>🚙 Find a Vehicle 🚘</h1>
+    <h1>🚙 Find a Vehicle</h1>
     <div id="vehicles">
       <form phx-submit="search" phx-change="suggest">
         <input

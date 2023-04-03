@@ -50,125 +50,110 @@ defmodule LiveStudioWeb.Components.LeftSideBar do
   end
 
   attr :active_tab, :atom, required: true
+  attr :current_user, :map, required: true
 
   def nav_links(assigns) do
     ~H"""
-    <nav class="h-full px-3 mt-6">
-      <div class="container h-full table">
-        <.link
-          navigate={~p"/app/light/"}
-          class={"text-gray-700 hover:text-gray-900  flex items-center px-3 py-4 text-md font-medium rounded-md
-              #{if @active_tab == :light, do: "bg-gray-200 text-gray-900", else: "hover:bg-gray-200"}"
-            }
-        >
-          💡 Light
-        </.link>
-        <.link
-          navigate={~p"/app/sandbox/"}
-          class={"text-gray-700 hover:text-gray-900  flex items-center px-3 py-4 text-md font-medium rounded-md
-              #{if @active_tab == :sandbox, do: "bg-gray-200 text-gray-900", else: "hover:bg-gray-200"}"
-            }
-        >
-          🏝 Sandbox
-        </.link>
-        <.link
-          navigate={~p"/app/sales/"}
-          class={"text-gray-700 hover:text-gray-900  flex items-center px-3 py-4 text-md font-medium rounded-md
-              #{if @active_tab == :sales, do: "bg-gray-200 text-gray-900", else: "hover:bg-gray-200"}"
-            }
-        >
-          📊 Snappy Sales
-        </.link>
-        <.link
-          navigate={~p"/app/bingo/"}
-          class={"text-gray-700 hover:text-gray-900  flex items-center px-3 py-4 text-md font-medium rounded-md
-              #{if @active_tab == :bingo, do: "bg-gray-200 text-gray-900", else: "hover:bg-gray-200"}"
-            }
-        >
-          🅱️ Bingoo!
-        </.link>
-        <.link
-          navigate={~p"/app/flights/"}
-          class={"text-gray-700 hover:text-gray-900  flex items-center px-3 py-4 text-md font-medium rounded-md
-              #{if @active_tab == :flights, do: "bg-gray-200 text-gray-900", else: "hover:bg-gray-200"}"
-            }
-        >
-          ✈️ Flights
-        </.link>
-        <.link
-          navigate={~p"/app/vehicles/"}
-          class={"text-gray-700 hover:text-gray-900  flex items-center px-3 py-4 text-md font-medium rounded-md
-              #{if @active_tab == :vehicles, do: "bg-gray-200 text-gray-900", else: "hover:bg-gray-200"}"
-            }
-        >
-          🚙 Vehicles
-        </.link>
-        <.link
-          navigate={~p"/app/boats/"}
-          class={"text-gray-700 hover:text-gray-900  flex items-center px-3 py-4 text-md font-medium rounded-md
-              #{if @active_tab == :boats, do: "bg-gray-200 text-gray-900", else: "hover:bg-gray-200"}"
-            }
-        >
-          🚤 Boats
-        </.link>
-        <.link
-          navigate={~p"/app/athletes/"}
-          class={"text-gray-700 hover:text-gray-900  flex items-center px-3 py-4 text-md font-medium rounded-md
-              #{if @active_tab == :athletes, do: "bg-gray-200 text-gray-900", else: "hover:bg-gray-200"}"
-            }
-        >
-          🏄🏾‍♀️ Athletes
-        </.link>
-        <.link
-          navigate={~p"/app/servers/"}
-          class={"text-gray-700 hover:text-gray-900  flex items-center px-3 py-4 text-md font-medium rounded-md
-              #{if @active_tab == :servers, do: "bg-gray-200 text-gray-900", else: "hover:bg-gray-200"}"
-            }
-        >
-          👨‍💻 Servers
-        </.link>
-        <.link
-          navigate={~p"/app/donations/"}
-          class={"text-gray-700 hover:text-gray-900  flex items-center px-3 py-4 text-md font-medium rounded-md
-              #{if @active_tab == :donations, do: "bg-gray-200 text-gray-900", else: "hover:bg-gray-200"}"
-            }
-        >
-          🍞 Donations
-        </.link>
-        <.link
-          navigate={~p"/app/pizza-orders/"}
-          class={"text-gray-700 hover:text-gray-900  flex items-center px-3 py-4 text-md font-medium rounded-md
-              #{if @active_tab == :pizza_orders, do: "bg-gray-200 text-gray-900", else: "hover:bg-gray-200"}"
-            }
-        >
-          🍕 Pizza Orders
-        </.link>
-        <.link
-          navigate={~p"/app/volunteers/"}
-          class={"text-gray-700 hover:text-gray-900  flex items-center px-3 py-4 text-md font-medium rounded-md
-              #{if @active_tab == :volunteers, do: "bg-gray-200 text-gray-900", else: "hover:bg-gray-200"}"
-            }
-        >
-          🙋‍♀️ Volunteers
-        </.link>
-        <.link
-          navigate={~p"/app/topsecret/"}
-          class={"text-gray-700 hover:text-gray-900  flex items-center px-3 py-4 text-md font-medium rounded-md
-              #{if @active_tab == :topsecret, do: "bg-gray-200 text-gray-900", else: "hover:bg-gray-200"}"
-            }
-        >
-          🕵🏼 Top Secret
-        </.link>
-        <.link
-          navigate={~p"/app/presence/"}
-          class={"text-gray-700 hover:text-gray-900  flex items-center px-3 py-4 text-md font-medium rounded-md
-              #{if @active_tab == :presence, do: "bg-gray-200 text-gray-900", else: "hover:bg-gray-200"}"
-            }
-        >
-          👀 Presence Live
-        </.link>
-      </div>
-    </nav>
+    <div class="container h-full table">
+      <.nav_link path={~p"/app/light/"} tab={:light} active_tab={@active_tab}>
+        💡 Light
+      </.nav_link>
+      <.nav_link path={~p"/app/sandbox/"} tab={:sandbox} active_tab={@active_tab}>
+        🏝 Sandbox
+      </.nav_link>
+      <.nav_link path={~p"/app/sales/"} tab={:sales} active_tab={@active_tab}>
+        📊 Snappy Sales
+      </.nav_link>
+      <.nav_link path={~p"/app/bingo/"} tab={:bingo} active_tab={@active_tab}>
+        🅱️ Bingoo!
+      </.nav_link>
+      <.nav_link path={~p"/app/flights/"} tab={:flights} active_tab={@active_tab}>
+        ✈️ Flights
+      </.nav_link>
+      <.nav_link path={~p"/app/vehicles/"} tab={:vehicles} active_tab={@active_tab}>
+        🚙 Vehicles
+      </.nav_link>
+      <.nav_link path={~p"/app/boats/"} tab={:boats} active_tab={@active_tab}>
+        🚤 Boats
+      </.nav_link>
+      <.nav_link path={~p"/app/athletes/"} tab={:athletes} active_tab={@active_tab}>
+        🏄🏾‍♀️ Athletes
+      </.nav_link>
+      <.nav_link path={~p"/app/servers/"} tab={:servers} active_tab={@active_tab}>
+        👨‍💻 Servers
+      </.nav_link>
+      <.nav_link path={~p"/app/donations/"} tab={:donations} active_tab={@active_tab}>
+        🍞 Donations
+      </.nav_link>
+      <.nav_link path={~p"/app/pizza-orders/"} tab={:pizza_orders} active_tab={@active_tab}>
+        🍕 Pizza Orders
+      </.nav_link>
+      <.nav_link path={~p"/app/volunteers/"} tab={:volunteers} active_tab={@active_tab}>
+        🙋‍♀️ Volunteers
+      </.nav_link>
+      <.nav_link path={~p"/app/topsecret/"} tab={:topsecret} active_tab={@active_tab}>
+        🕵🏼 Top Secret
+      </.nav_link>
+      <.nav_link path={~p"/app/presence/"} tab={:presence} active_tab={@active_tab}>
+        👀 Presence Live
+      </.nav_link>
+
+      <.link
+        navigate={~p"/users/settings"}
+        class={"text-gray-500 flex items-center ml-0 px-2 py-2 text-md font-medium rounded-md
+              #{if @active_tab == :settings, do: "bg-gray-200", else: "hover:bg-gray-200"}"
+        }
+      >
+        <div class="text-gray-500 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6">
+          <.icon name="hero-adjustments-vertical" />
+        </div>
+        Settings
+      </.link>
+      <.link
+        href={~p"/users/log_out"}
+        method="delete"
+        class={"text-gray-500 flex items-center ml-0 px-2 py-2 text-md font-medium rounded-md
+              #{if @active_tab == :settings, do: "bg-gray-200", else: "hover:bg-gray-200"}"
+        }
+      >
+        <div class="text-gray-500 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6">
+          <.icon name="hero-arrow-left-on-rectangle" />
+        </div>
+        Log out
+      </.link>
+    </div>
+    """
+  end
+
+  def sidebar_account_dropdown(assigns) do
+    ~H"""
+    <.dropdown id={@id}>
+      <:img src="/images/spy.svg" default_icon={:user_circle} />
+      <:title><%= @current_user.email %></:title>
+      <:subtitle>admin</:subtitle>
+      <:link navigate={~p"/users/settings"}>Settings</:link>
+      <:link href={~p"/users/log_out"} method={:delete}>Sign out</:link>
+    </.dropdown>
+    """
+  end
+
+  attr :path, :string, required: true
+  attr :tab, :any, required: true
+  attr :active_tab, :any, required: true
+  slot :inner_block
+
+  defp nav_link(assigns) do
+    ~H"""
+    <div class="space-y-1 group">
+      <.link
+        navigate={@path}
+        class={"hover:text-gray-700 hover:bg-gray-200 flex items-center px-3 py-4 text-md font-medium rounded-md
+            #{if @active_tab == @tab, do: "bg-gray-200 text-gray-700", else: "text-gray-500"}"
+      }
+      >
+        <%= render_slot(@inner_block) %>
+      </.link>
+    </div>
     """
   end
 end

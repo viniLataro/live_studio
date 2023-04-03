@@ -43,7 +43,7 @@ defmodule LiveStudioWeb.Live.App.ServersLive do
 
   def render(assigns) do
     ~H"""
-    <h1>Servers</h1>
+    <h1>👨‍💻 Servers</h1>
     <div id="servers">
       <div class="sidebar">
         <div class="nav">

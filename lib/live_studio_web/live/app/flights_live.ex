@@ -18,7 +18,7 @@ defmodule LiveStudioWeb.Live.App.FlightsLive do
 
   def render(assigns) do
     ~H"""
-    <h1>Find a Flight</h1>
+    <h1>✈️ Find a Flight</h1>
     <div id="flights">
       <form phx-submit="search" phx-change="suggest">
         <input
