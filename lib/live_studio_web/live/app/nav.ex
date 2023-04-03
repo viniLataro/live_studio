@@ -58,6 +58,9 @@ defmodule LiveStudioWeb.Live.App.Nav do
         {App.PresenceLive, _} ->
           :presence
 
+        {App.ShopLive, _} ->
+          :shop
+
         {_, _} ->
           :any
       end
