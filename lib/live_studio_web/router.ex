@@ -51,6 +51,7 @@ defmodule LiveStudioWeb.Router do
       live "/presence", PresenceLive, :show
       live "/shop", ShopLive, :show
       live "/bookings", BookingsLive, :show
+      live "/juggling", JugglingLive, :show
     end
   end
 
