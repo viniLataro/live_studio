@@ -100,6 +100,9 @@ defmodule LiveStudioWeb.Components.LeftSideBar do
       <.nav_link path={~p"/app/shop/"} tab={:shop} active_tab={@active_tab}>
         🛒 Shop
       </.nav_link>
+      <.nav_link path={~p"/app/bookings/"} tab={:bookings} active_tab={@active_tab}>
+        📅 Bookings
+      </.nav_link>
 
       <.link
         navigate={~p"/users/settings"}
