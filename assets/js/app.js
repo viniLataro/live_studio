@@ -24,6 +24,8 @@ import topbar from "../vendor/topbar";
 
 import flatpickr from "../vendor/flatpickr";
 
+import Uploaders from "./uploaders";
+
 let Hooks = {};
 
 Hooks.Flash = {
@@ -163,8 +165,9 @@ let csrfToken = document
   .getAttribute("content");
 
 let liveSocket = new LiveSocket("/live", Socket, {
-  hooks: Hooks,
   params: { _csrf_token: csrfToken },
+  hooks: Hooks,
+  uploaders: Uploaders,
   dom: {
     onNodeAdded(node) {
       if (node instanceof HTMLElement && node.autofocus) {

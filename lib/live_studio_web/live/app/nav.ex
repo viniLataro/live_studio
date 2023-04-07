@@ -67,6 +67,9 @@ defmodule LiveStudioWeb.Live.App.Nav do
         {App.JugglingLive, _} ->
           :juggling
 
+        {App.DesksLive, _} ->
+          :desks
+
         {_, _} ->
           :any
       end
