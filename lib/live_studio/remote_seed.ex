@@ -1,4 +1,6 @@
 defmodule LiveStudio.RemoteSeed do
+  alias Faker
+
   alias LiveStudio.Repo
   alias LiveStudio.Boats.Boat
   alias LiveStudio.Servers.Server
